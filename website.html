@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <title>Анастасия — Видеограф</title>
+
+<script>
+
+// Ленивая загрузка изображений
+const images = document.querySelectorAll('img[data-src]');
+const imageObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.src = img.dataset.src;
+      img.classList.remove('lazy');
+      imageObserver.unobserve(img);
+    }
+  });
+});
+images.forEach(img => imageObserver.observe(img));
+
+</script>
+  <style>
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  header h1 {
+    font-size: 2.2em;
+  }
+  
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Если фото в той же папке что и HTML файл */
+header {
+  background: url('face.png') center/cover no-repeat;
+}
+
+header {
+  background: 
+    linear-gradient(rgba(86, 28, 36, 0.7), rgba(109, 41, 50, 0.7)),
+    url('face.png') center/cover no-repeat,
+    #561C24; /* Fallback цвет */
+}
+
+header {
+  position: relative;
+  text-align: center;
+  color: #E8D8C4;
+  background: 
+    linear-gradient(rgba(86, 28, 36, 0.7), rgba(109, 41, 50, 0.7)),
+    url('face.png') center/cover no-repeat;
+  padding: 120px 20px 140px;
+  min-height: 60vh; /* Минимальная высота */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+    /* ====== Общие стили ====== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", "Helvetica Neue", sans-serif;
+      background: #E8D8C4;
+      color: #2b1e1f;
+      line-height: 1.7;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+   h1, h2 {
+  font-family: "Forum", serif;
+}
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* ====== Шапка ====== */
+    header {
+      position: relative;
+      text-align: center;
+      color: #E8D8C4;
+      background: linear-gradient(135deg, #50161e, #50161e);
+      padding: 120px 20px 140px;
+    }
+
+    header h1 {
+      font-size: 3.2em;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #E8D8C4;
+    }
+
+    /* ====== Навигация ====== */
+nav {
+  background: #C7B7A3;
+  display: flex;
+  justify-content: center;   /* Центрируем элементы по горизонтали */
+  align-items: center;       /* Выравниваем по вертикали */
+  gap: 40px;                 /* Расстояние между пунктами */
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Стиль ссылок */
+nav a {
+  position: relative;
+  font-weight: 600;
+  color: #561C24;
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-size: 1.05em;
+}
+
+/* Анимированное подчеркивание */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background-color: #6D2932;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+/* Эффект при наведении */
+nav a:hover {
+  color: #6D2932;
+  transform: scale(1.05);
+}
+
+nav a:hover::after {
+  width: 50%;
+}
+
+
+    /* ====== Контент ====== */
+    section {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    section h2 {
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 25px;
+      position: relative;
+      color: #561C24;
+    }
+
+    section h2::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -8px;
+      width: 60px;
+      height: 3px;
+      border-radius: 2px;
+      background: #6D2932;
+    }
+
+    /* ====== Обо мне ====== */
+    #about p {
+      text-align: center;
+      font-size: 1.1em;
+      color: #3c2c2e;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      color: #6D2932;
+      font-weight: 600;
+    }
+
+    /* ====== Портфолио ====== */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .portfolio-grid img {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      border: 4px solid #C7B7A3;
+    }
+
+    .portfolio-grid img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(86, 28, 36, 0.2);
+    }
+
+    /* ====== Контакты ====== */
+    .contact {
+      text-align: center;
+      font-size: 1.1em;
+      background: #C7B7A3;
+      padding: 40px;
+      border-radius: 10px;
+      color: #561C24;
+    }
+
+    .contact a {
+      color: #6D2932;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .contact a:hover {
+      color: #561C24;
+    }
+
+    /* ====== Подвал ====== */
+    footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 0.9em;
+      color: #E8D8C4;
+      background: #561C24;
+      margin-top: 60px;
+    }
+
+#price {
+  position: relative;
+  background: #E8D8C4;
+  padding: 60px 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Общие стили для всех поцелуев */
+#price::before,
+#price::after,
+#price .kiss {
+  filter: brightness(0) saturate(100%) invert(16%) sepia(85%) saturate(3615%) hue-rotate(353deg) brightness(93%) contrast(101%);
+  opacity: 0.6; /* Можно регулировать прозрачность */
+}
+
+/* Основные поцелуи через псевдоэлементы */
+#price::before,
+#price::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Правый верхний */
+#price::after {
+  background-image: url('kiss-right.png');
+  top: -20px;
+  right: -20px;
+  transform: rotate(10deg);
+}
+
+/* Левый нижний */
+#price::before {
+  background-image: url('kiss-left.png');
+  bottom: -20px;
+  left: -20px;
+  transform: rotate(-10deg);
+}
+
+/* Дополнительные поцелуи */
+#price .kiss {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Расположение дополнительных поцелуев */
+#price .kiss.top-left {
+  top: -30px;
+  left: -30px;
+  background-image: url('kiss-left.png');
+  transform: rotate(15deg);
+}
+
+#price .kiss.bottom-right {
+  bottom: -30px;
+  right: -30px;
+  background-image: url('kiss-right.png');
+  transform: rotate(-15deg);
+}
+
+#price .kiss.bottom-left {
+  bottom: -20px;
+  left: 10px;
+  transform: rotate(-15deg);
+}
+
+#price .kiss.bottom-right-additional {
+  bottom: -20px;
+  right: 10px;
+  transform: rotate(15deg);
+}
+
+/* Контейнер для текста поверх фона */
+#price .price-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Скрываем поцелуи на мобильных */
+@media (max-width: 768px) {
+  #price::before, #price::after, #price .kiss {
+    display: none;
+  }
+}
+
+/* ===== Раздел ПОЧЕМУ Я ===== */
+#why-me {
+  background: #C7B7A3;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#why-me h2 {
+  color: #561C24;
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+#why-me .advantages {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#why-me .advantages li {
+  font-size: 20px;
+  color: #6D2932;
+  margin-bottom: 15px;
+}
+
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Добавьте это в стили для мгновенного преображения */
+body {
+  background-image: linear-gradient(45deg, #E8D8C4 25%, transparent 25%), 
+                    linear-gradient(-45deg, #E8D8C4 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #E8D8C4 75%), 
+                    linear-gradient(-45deg, transparent 75%, #E8D8C4 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Анимированные кнопки */
+.cta-button {
+  background: linear-gradient(45deg, #561C24, #6D2932);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(86, 28, 36, 0.3);
+}
+
+/* ====== Секция биографии ====== */
+#biography {
+  background: #C7B7A3;
+  padding: 80px 20px;
+  margin: 80px auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(86, 28, 36, 0.1);
+}
+
+#biography h2 {
+  font-family: "Forum", serif;
+  color: #561C24;
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+#biography h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -12px;
+  width: 80px;
+  height: 3px;
+  background: #6D2932;
+  border-radius: 2px;
+}
+
+.biography-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.biography-content p {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3em;
+  line-height: 1.8;
+  color: #2b1e1f;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* ===== Таблица прайс ===== */
+#price table {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+#price th, #price td {
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 12px 15px;
+  font-size: 18px;
+  color: #E8D8C4;
+}
+
+#price th {
+  background: rgba(86,28,36,0.7);
+  color: #E8D8C4;
+}
+
+/* ====== Прайс ====== */
+#price {
+  background: #E8D8C4;
+  padding: 60px 20px;
+  border-radius: 10px;
+}
+
+#price h2 {
+  text-align: center;
+  color: #561C24;
+  font-size: 2em;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+#price h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -8px;
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+  background: #6D2932;
+}
+
+.price-container {
+  max-width: 850px;
+  margin: 0 auto;
+  background: #C7B7A3;
+  padding: 40px;
+  border-radius: 10px;
+  color: #2b1e1f;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.price-item {
+  margin-bottom: 25px;
+  font-size: 1.1em;
+}
+
+.price-item strong {
+  color: #561C24;
+}
+
+.note {
+  font-size: 0.95em;
+  color: #4a3d3e;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+#price h3 {
+  color: #6D2932;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+#price ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#price li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+#price li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #561C24;
+  font-weight: bold;
+}
+
+
+</style>
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Анастасия Тищенко — Видеограф</h1>
+    <p>С любовью к свету, эмоциям и историям, которые хочется пересматривать снова и снова.</p>
+  </header>
+
+  <nav>
+    <a href="#about">Обо мне</a>
+    <a href="#biography">Моя биография</a>
+    <a href="#portfolio">Портфолио</a>
+    <a href="#contact">Контакты</a>
+    <a href="#price">Прайс</a>
+  </nav>
+
+  <section id="about">
+    <h2>Обо мне</h2>
+    <p>Привет, я Настя — видеограф с большой любовью к своему делу.</p>
+    <p>Моя цель — создавать видео, которые передают <span class="highlight">атмосферу, чувства и настроение</span> момента.</p>
+    <p>Я помогаю людям и брендам говорить языком <span class="highlight">визуальных историй</span>, которые хочется пересматривать снова и снова.</p>
+    <p>Съёмка — это не просто кадры. Это про <span class="highlight">эмоции, стиль и смысл</span>. Про уверенность в себе и самовыражение через видео.</p>
+  </section>
+
+<section id="biography">
+  <h2>Моя биография</h2>
+  <div class="biography-content">
+    <p>Активная фаза моего профессионального развития в данной области длится порядка полугода. Этот период был посвящен интенсивному обучению: я посетила множество курсов и воркшопов от практикующих специалистов, что позволило мне получить комплексное представление о ключевых аспектах сферы и сформировать прочную теоретическую базу.</p>
+  </div>
+</section>
+
+<section id="price"> 
+    <div class="kiss top-left"></div>
+<div class="kiss bottom-right"></div>
+  <h2>Прайс</h2>
+<div class="kiss top-left"></div>
+<div class="kiss top-right"></div>
+<div class="kiss bottom-left"></div>
+<div class="kiss bottom-right"></div>
+
+  <div class="price-container">
+    <div class="price-item">
+      <p><strong>Съёмка + монтаж (1 час)</strong> — 200 зл</p>
+    </div>
+
+    <div class="price-item">
+      <p><strong>Пакет из семи видео</strong> — 900 зл</p>
+      <p class="note">(Пакет подойдёт для бизнеса и его можно растянуть не более чем на 2 месяца)</p>
+    </div>
+
+    <h3>Варианты видео, которые я могу снять:</h3>
+    <ul>
+      <li><strong>Коммерческие:</strong> рекламные ролики — короткие, продающие видео о товаре/услуге</li>
+      <li><strong>Бэкстейдж</strong></li>
+      <li><strong>Контент для соцсетей:</strong> Reels, Shorts, TikTok (сценки, советы, закулисье)</li>
+      <li><strong>События:</strong> свадьбы, love story / предложение руки и сердца, дни рождения, юбилеи, выпускные, крестины, вечеринки, корпоративы, открытия магазинов</li>
+    </ul>
+  </div>
+</section>
+
+  <section id="portfolio">
+    <h2>Портфолио</h2>
+    <div class="portfolio-grid">
+      <img src="5802966606559251858.jpg" alt="Работа 1">
+      <img src="5802966606559251857.png" alt="Работа 2">
+      <img src="5802966606559251859.jpg" alt="Работа 3">
+    </div>
+  </section>
+
+<section id="why-me">
+  <div class="container">
+    <h2>ПОЧЕМУ Я?</h2>
+    <ul class="advantages">
+      <li>умение уловить эмоции и создать атмосферу</li>
+      <li>Съёмка, монтаж и цветокор — всё в одном</li>
+      <li>Индивидуальный подход к каждому клиенту</li>
+    </ul>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <h2>ЧАСТЫЕ ВОПРОСЫ</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">Сроки обработки</div>
+      <div class="faq-answer">1–3 дня</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Нужна ли предоплата?</div>
+      <div class="faq-answer">Нет, просто сообщи заранее если все отменятся</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Входит ли монтаж в стоимость?</div>
+      <div class="faq-answer">Да, монтаж входит в стоимость</div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ===== Общие стили ===== */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  font-family: 'Lato', sans-serif;
+}
+
+/* ===== Раздел ПОЧЕМУ Я ===== */
+#why-me {
+  background: #C7B7A3;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 15px; /* Закругленные углы */
+  margin: 80px auto;
+  max-width: 900px;
+  box-shadow: 0 8px 25px rgba(86, 28, 36, 0.1); /* Добавим тень для красоты */
+}
+
+#why-me h2 {
+  color: #561C24;
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-family: "Forum", serif;
+}
+
+#why-me .advantages {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#why-me .advantages li {
+  font-size: 20px;
+  color: #6D2932;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.3); /* Легкий фон для пунктов */
+  border-radius: 10px; /* Закругленные углы у пунктов */
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+#why-me .advantages li:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(86, 28, 36, 0.2);
+}
+/* ===== FAQ ===== */
+#faq {
+  background: #E8D8C4;
+  padding: 60px 20px;
+}
+
+#faq h2 {
+  color: #561C24;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.faq-item {
+  max-width: 700px;
+  margin: 0 auto 20px auto;
+  border-bottom: 1px solid #C7B7A3;
+}
+
+.faq-question {
+  color: #6D2932;
+  font-size: 22px;
+  cursor: pointer;
+  margin: 0;
+  padding: 10px 0;
+  position: relative;
+}
+
+.faq-question::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  font-size: 22px;
+  transition: transform 0.3s;
+}
+
+.faq-question.active::after {
+  content: "−";
+}
+
+.faq-answer {
+  color: #561C24;
+  font-size: 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0;
+}
+
+.faq-answer.open {
+  max-height: 200px;
+  padding: 5px 0;
+}
+
+/* ===== Плавное появление при скролле ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Текущая палитра - можно изменить */
+:root {
+  --primary: #561C24;    /* Тёмно-бордовый */
+  --secondary: #6D2932;  /* Бордовый */
+  --accent: #C7B7A3;     /* Бежевый */
+  --background: #E8D8C4; /* Светло-бежевый */
+  --text: #2b1e1f;       /* Тёмно-коричневый */
+}
+
+</style>
+  <section id="contact">
+    <h2>Контакты</h2>
+    <div class="contact">
+      <p>📍 Вроцлав - Польша</p>
+      <p>📞Phone: <a href="tel:+48579291930">+48 579 291 930 </a></p>
+      <p>📧Gmail: <a href="tishenkonastya74@gmail.com">tishenkonastya74@gmail.com</a></p>
+      <p>🌐 Instagram: <a href="https://www.instagram.com/anastasiia.tischenko/" target="_blank">@anastasiia.tischenko</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Анастасия Тищенко — видеограф. Все права защищены.</p>
+  </footer>
+
+</style>
+<script>
+// ===== Плавная прокрутка к якорям =====
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    
+    if (targetSection) {
+      // Плавная прокрутка
+      targetSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      // Обновляем URL без перезагрузки страницы
+      history.pushState(null, null, targetId);
+    }
+  });
+});
+
+// ===== Аккордеон FAQ =====
+document.querySelectorAll('.faq-question').forEach(question => {
+  question.addEventListener('click', () => {
+    const answer = question.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+
+    // Закрываем все ответы
+    document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+
+    // Открываем текущий если был закрыт
+    if (!isOpen) {
+      answer.classList.add('open');
+      question.classList.add('active');
+    }
+  });
+});
+
+// ===== Плавное появление при скролле =====
+const faders = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.1 });
+
+faders.forEach(fader => observer.observe(fader));
+</script>
+
+<style>
+/* ===== Дополнительные стили для плавной прокрутки ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Стиль для активной ссылки в навигации */
+nav a.active {
+  color: #6D2932;
+  transform: scale(1.05);
+}
+
+nav a.active::after {
+  width: 80% !important;
+}
+
+/* Подсветка секции при скролле */
+section {
+  transition: all 0.3s ease;
+  scroll-margin-top: 80px; /* Учитывает высоту sticky навигации */
+}
+
+section.highlight {
+  background: rgba(199, 183, 163, 0.1);
+  box-shadow: 0 0 20px rgba(86, 28, 36, 0.1);
+}
+</style>
+</script>
+<style>
+/* ===== Дополнительные стили для плавной прокрутки ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Стиль для активной ссылки в навигации */
+nav a.active {
+  color: #6D2932;
+  transform: scale(1.05);
+}
+
+nav a.active::after {
+  width: 80% !important;
+}
+
+/* Подсветка секции при скролле */
+section {
+  transition: all 0.3s ease;
+  scroll-margin-top: 80px; /* Учитывает высоту sticky навигации */
+}
+
+section.highlight {
+  background: rgba(199, 183, 163, 0.1);
+  box-shadow: 0 0 20px rgba(86, 28, 36, 0.1);
+}
+</style>
+<style>
+/* ===== Дополнительные стили для плавной прокрутки ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Стиль для активной ссылки в навигации */
+nav a.active {
+  color: #6D2932;
+  transform: scale(1.05);
+}
+
+nav a.active::after {
+  width: 80% !important;
+}
+
+/* Подсветка секции при скролле */
+section {
+  transition: all 0.3s ease;
+}
+
+section.highlight {
+  background: rgba(199, 183, 163, 0.1);
+  box-shadow: 0 0 20px rgba(86, 28, 36, 0.1);
+}
+
+/* Улучшение отступов для навигации */
+section {
+  scroll-margin-top: 80px; /* Учитывает высоту sticky навигации */
+}
+</style>
+
+<script>
+document.querySelectorAll(".faq-question").forEach(q => q.classList.remove("active"));
+
+// Открываем текущий если был закрыт
+if (!isOpen) {
+    answer.classList.add('open');
+    question.classList.add('active');
+}
+
+
+document.querySelectorAll(".faq-question").forEach(q => q.classList.remove("active"));
+
+// Открываем текущий если был закрыт
+if (!isOpen) {
+    answer.classList.add('open');
+    question.classList.add('active');
+}
